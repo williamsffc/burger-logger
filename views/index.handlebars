@@ -1,9 +1,3 @@
-{{!-- Create the layouts directory inside views directory.
-Create the main.handlebars file inside layouts directory.
-Setup the main.handlebars file so it's able to be used by Handlebars.
-Setup the index.handlebars to have the template that Handlebars can render onto.
-Create a button in index.handlebars that will submit the user input into the database. --}}
-
 <h1>Burgers!!!</h1>
 
 <h3>Eat the burger:</h3>
@@ -12,13 +6,13 @@ Create a button in index.handlebars that will submit the user input into the dat
     {{#each burgers}}
     <li>
         <p>ID: {{this.id}}</p>
-        <p>Burger: {{this.burger}}</p>
+        <p>Burger: {{this.burger_name}}</p>
     </li>
     {{/each}}
 </ul>
 
 <form action="/" method="POST">
-    <textarea type="text" name="task"></textarea>
+    <textarea type="text" name="name"></textarea>
 
     <button type="submit">Submit</button>
 </form>

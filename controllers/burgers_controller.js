@@ -1,8 +1,5 @@
 var express = require("express");
-
 var router = express.Router();
-
-// Import the model (cat.js) to use its database functions.
 var burger = require("../models/burger.js");
 
 router.get("/", function (req, res) {
@@ -15,11 +12,13 @@ router.get("/", function (req, res) {
     });
 });
 
-router.post("/api/burgers", function (req, res) {
-    // cat.create(["name", "sleepy"], [req.body.name, req.body.sleepy], function (result) {
-    //     // Send back the ID of the new quote
-    //     res.json({ id: result.insertId });
-    // });
+router.post("/", function (req, res) {
+    burger.create(
+        ["burger_name"], [req.body.name],
+        function (result) {
+            // res.json({ id: result.insertId });
+            res.redirect("/");
+        });
 });
 
 router.put("/api/burger/:id", function (req, res) {

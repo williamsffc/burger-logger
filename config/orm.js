@@ -37,38 +37,28 @@ var orm = {
         });
     },
 
-
-    // selectAll()
     // insertOne()
     // updateOne()
 
-    // selectAll: function (tableInput, colToSearch, valOfCol) {
-    //     var queryString = "SELECT * FROM ??";
-    //     connection.query(queryString, [tableInput, colToSearch, valOfCol], function (err, result) {
-    //         if (err) throw err;
-    //         console.log(result);
-    //     });
-    // },
+    insertOne: function (table, cols, vals, cb) {
+        var queryString = "INSERT INTO " + table;
 
-    // insertOne: function (table, cols, vals, cb) {
-    //     var queryString = "INSERT INTO " + table;
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
 
-    //     queryString += " (";
-    //     queryString += cols.toString();
-    //     queryString += ") ";
-    //     queryString += "VALUES (";
-    //     queryString += printQuestionMarks(vals.length);
-    //     queryString += ") ";
+        console.log(queryString);
 
-    //     console.log(queryString);
-
-    //     connection.query(queryString, vals, function (err, result) {
-    //         if (err) {
-    //             throw err;
-    //         }
-    //         cb(result);
-    //     });
-    // },
+        connection.query(queryString, vals, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        });
+    },
 
     // updateOne: function (table, objColVals, condition, cb) {
     //     var queryString = "UPDATE " + table;
