@@ -2,6 +2,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var mysql = require("mysql");
 
+var orm = require("./config/orm.js");
 var app = express();
 
 // Set the port of our application
@@ -15,34 +16,66 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "password",
-    database: "burgers_db"
+var routes = require("./controllers/burgers_controller");
+
+app.use(routes);
+
+// Start our server so that it can begin listening to client requests.
+app.listen(PORT, function () {
+    // Log (server-side) when our server has started
+    console.log("Server listening on: http://localhost:" + PORT);
 });
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
 
-    console.log("connected as id " + connection.threadId);
-});
+// var connection = mysql.createConnection({
+//     host: "localhost",
+//     port: 3306,
+//     user: "root",
+//     password: "password",
+//     database: "burgers_db"
+// });
+
+// connection.connect(function (err) {
+//     if (err) {
+//         console.error("error connecting: " + err.stack);
+//         return;
+//     }
+
+//     console.log("connected as id " + connection.threadId);
+// });
+
+
+
+////////////////////
+
+// orm.select("burger_name", "burgers", function (result) {
+//     var data = result;
+//     console.log(data);
+// });
 
 // // Use Handlebars to render the main index.html page with the plans in it.
 // app.get("/", function (req, res) {
-//     connection.query("SELECT * FROM movies;", function (err, data) {
+
+//     orm.select("burger_name", "burgers", function (res) {
+//         var data = res;
+//         console.log(data);
 //         if (err) {
 //             return res.status(500).end();
 //         }
 
-//         res.render("index", { movies: data });
+//         res.render("index", { burgers: data });
 //     });
+
+//     // connection.query("SELECT * FROM movies;", function (err, data) {
+//     //     if (err) {
+//     //         return res.status(500).end();
+//     //     }
+
+//     //     res.render("index", { movies: data });
+//     // });
 // });
 
+////////////////////////////////
 
 // // Create a new plan
 // app.post("/api/movies", function (req, res) {
@@ -101,7 +134,7 @@ connection.connect(function (err) {
 // });
 
 // Start our server so that it can begin listening to client requests.
-app.listen(PORT, function () {
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT);
-});
+// app.listen(PORT, function () {
+//     // Log (server-side) when our server has started
+//     console.log("Server listening on: http://localhost:" + PORT);
+// });
