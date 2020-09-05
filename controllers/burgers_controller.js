@@ -26,14 +26,14 @@ router.get("/", function (req, res) {
 router.post("/api/burgers", function (req, res) {
     burger.create(
         [
-            "burger_name"
+            "burger_name", "devoured"
         ], 
         [
-            req.body.burger
+            req.body.burger, req.body.devoured
         ],
         function (result) {
-            // res.json({id: result.insertId});
-            res.redirect("/");
+          
+            res.redirect({id: result.insertId});
         });
 });
 
@@ -49,26 +49,26 @@ router.delete("/api/burgers/:id", function (req, res) {
     });
 });
 
-// router.put("/api/burger/:id", function (req, res) {
-//     var condition = "id = " + req.params.id;
+router.put("/api/burger/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
 
-//     console.log("condition", condition);
+    console.log("condition", condition);
 
-//     cat.update(
-//         {
-//             sleepy: req.body.sleepy
-//         },
-//         condition,
-//         function (result) {
-//             if (result.changedRows === 0) {
-//                 // If no rows were changed, then the ID must not exist, so 404
-//                 return res.status(404).end();
-//             }
-//             res.status(200).end();
+    burger.update(
+        {
+            devoured: req.body.devoured
+        },
+        condition,
+        function (result) {
+            if (result.changedRows === 0) {
+                // If no rows were changed, then the ID must not exist, so 404
+                return res.status(404).end();
+            }
+            res.status(200).end();
 
-//         }
-//     );
-// });
+        }
+    );
+});
 
-// Export routes for server.js to use.
+
 module.exports = router;
