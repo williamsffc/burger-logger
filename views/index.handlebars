@@ -4,19 +4,28 @@
 
 <ul>
     {{#each burgers}}
-        {{#unless devoured}}
-            {{> burgers/burger-block devour=true}}
-        {{/unless}}
+    {{#unless devoured}}
+    <td>{{id}}</td>
+    <td>{{burger_name}}</td>
+
+    <button class="change-devour" data-id="{{id}}" data-newdevour="{{devour}}"> DEVOURED ME!!!
+    </button>
+
+    
+    {{/unless}}
     {{/each}}
 </ul>
+
 
 <h3>Burger Devoured!!!</h3>
 
 <ul>
     {{#each burgers}}
-        {{#if devoured}}
-            {{> burgers/burger-block devour=false}}
-        {{/if}}
+    {{#if devoured}}
+    <td>{{this.id}}</td>
+    <td>{{this.burger_name}}</td>
+    <button class="delete-burger" data-id="{{this.id}}">DELETE!</button>
+    {{/if}}
     {{/each}}
 </ul>
 
@@ -28,13 +37,5 @@
         <input type="text" id="ca" name="burger_name">
     </div>
 
-    <div class="form-group">
-        <label for="devoured">Devoured?</label><br>
-        <input type="radio" name="devoured" value="1" checked> Sleepy!<br>
-        <input type="radio" name="devoured" value="0"> Awake
-    </div>
-
     <button type="submit">Add Burger</button>
 </form>
-
-
