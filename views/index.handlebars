@@ -1,55 +1,45 @@
-<div class="container">
-    <h1>Burgers!!!</h1>
+<div class="container"  align="center">
+    <h1>BURGER... LICIOUS!</h1>
 
     <div class="row">
-        <div class="col-md-6 eat-burger">
+        <div class="eat-burger">
             <div class="title">
-                <h3>Eat that burger:</h3>
+                <h3>EAT THAT BURGER SON!!!</h3>
             </div>
-
             {{#each burgers}}
             {{#unless devoured}}
             <div>
-                {{id}} - {{burger_name}} <button class="change-devour" data-id="{{id}}" data-newdevour="{{devour}}">
-                    DEVOURED ME!!!
+                {{burger_name}} <button class="change-devour" data-id="{{id}}" data-newdevour="{{devour}}">
+                    DEVOUR ME!!
                 </button>
             </div>
             {{/unless}}
             {{/each}}
-
-
         </div>
 
-        <div class="col-md-6 devoured-burger">
+        <div class="devoured-burger">
             <div class="title">
-                <h3>Burger Devoured!!!</h3>
+                <h3>BURGER DEVOURED!!!</h3>
             </div>
-
             {{#each burgers}}
             {{#if devoured}}
             <div>
-                {{this.id}}
                 {{this.burger_name}}
-                <button class="delete-burger" data-id="{{this.id}}">DELETE!</button>
+                <button class="delete-burger" data-id="{{this.id}}">X</button>
             </div>
             {{/if}}
             {{/each}}
-
         </div>
 
     </div>
 </div>
 <br>
-
-<div class="add-burger">
+<div class="add-burger"  align="center">
     <div>
-        <h2>Add a Burger</h2>
         <form class="create-form">
-
-            <label for="ca">Burger Name:</label>
+        
             <input type="text" id="ca" name="burger_name">
-
-            <button type="submit">Add Burger</button>
+            <button type="submit">Add New Burger</button>
         </form>
     </div>
 </div>
