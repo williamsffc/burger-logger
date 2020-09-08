@@ -18,7 +18,7 @@
 ## **Installation:**
 * Run npm install to add the required dependencis such as Inquirer and Util before running the index.js file
 
-## **Usage:*** 
+## **Usage:**
 * Definitely before you show a project to other people or make it public. You might want to get into the habit of making it the first file you create in a new project. 
 
 ## **Contribution:**
