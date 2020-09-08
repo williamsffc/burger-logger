@@ -1,7 +1,7 @@
 var express = require("express");
-// var exphbs = require("express-handlebars");
-// var mysql = require("mysql");
-// var orm = require("./config/orm.js");
+var exphbs = require("express-handlebars");
+var mysql = require("mysql");
+var orm = require("./config/orm.js");
 
 var PORT = process.env.PORT || 8080;
 
