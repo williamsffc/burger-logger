@@ -31,6 +31,9 @@ h1 {
   color: white;
   text-shadow: 0 0 3px #66ff00, 0 0 5px #0000ff;
   font-size: 20px;
+}
+
+.change-devour{
   animation: shake 0.5s;
   animation-iteration-count: infinite;
 }
